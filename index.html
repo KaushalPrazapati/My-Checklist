@@ -1,255 +1,407 @@
-<!DOCTYPE html>  <html lang="hi">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Mission IIT JEE 2026</title>  
-    <!-- Modern Fonts -->  
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">  
-    <!-- Tailwind CSS -->  
-    <script src="https://cdn.tailwindcss.com"></script>  
-    <!-- FontAwesome for Icons -->  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-    <script>  
-        tailwind.config = {  
-            theme: {  
-                extend: {  
-                    fontFamily: {  
-                        sans: ['Poppins', 'sans-serif'],  
-                        display: ['Space Grotesk', 'sans-serif'],  
-                    },  
-                    colors: {  
-                        dark: '#0f172a',  
-                        darker: '#020617',  
-                        neonBlue: '#38bdf8',  
-                        neonPink: '#f43f5e',  
-                        neonGreen: '#34d399',  
-                        neonYellow: '#facc15'  
-                    }  
-                }  
-            }  
-        }  
-    </script>  
-    <style>  
-        /* Custom Scrollbar */  
-        ::-webkit-scrollbar { width: 8px; height: 8px; }  
-        ::-webkit-scrollbar-track { background: #0f172a; }  
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }  
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }  .glass-panel {  
-        background: rgba(30, 41, 59, 0.7);  
-        backdrop-filter: blur(10px);  
-        border: 1px solid rgba(255, 255, 255, 0.1);  
-    }  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission IIT JEE 2026 – OS</title>
 
-    .glow-text-blue { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }  
-    .glow-text-pink { text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }  
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    .task-row { transition: all 0.3s ease; }  
-    .task-done {  
-        opacity: 0.4;  
-        text-decoration: line-through;  
-        background-color: rgba(52, 211, 153, 0.05);  
-    }  
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        dark: '#020617',
+                        neonBlue: '#38bdf8',
+                        neonPink: '#f43f5e',
+                        neonGreen: '#34d399',
+                        neonYellow: '#facc15'
+                    }
+                }
+            }
+        }
+    </script>
 
-    /* Checkbox styling */  
-    .cyber-checkbox {  
-        appearance: none;  
-        width: 20px;  
-        height: 20px;  
-        border: 2px solid #38bdf8;  
-        border-radius: 4px;  
-        background: transparent;  
-        cursor: pointer;  
-        position: relative;  
-        transition: all 0.2s;  
-    }  
-    .cyber-checkbox:checked {  
-        background: #38bdf8;  
-        box-shadow: 0 0 10px #38bdf8;  
-    }  
-    .cyber-checkbox:checked::after {  
-        content: '✔';  
-        position: absolute;  
-        color: #020617;  
-        font-size: 14px;  
-        font-weight: bold;  
-        left: 3px;  
-        top: -1px;  
-    }  
+    <style>
+        body {
+            background-color: #020617;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 70%);
+            background-attachment: fixed;
+        }
+        .glass {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .task-done {
+            opacity: 0.35;
+            text-decoration: line-through;
+            background-color: rgba(52, 211, 153, 0.05);
+        }
+        
+        .cyber-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            background: rgba(2, 6, 23, 0.5);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .cyber-checkbox:checked {
+            background: #34d399;
+            border-color: #34d399;
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
+        }
+        .cyber-checkbox:checked::after {
+            content: '✔';
+            position: absolute;
+            color: #020617;
+            font-size: 16px;
+            font-weight: 800;
+            left: 4px;
+            top: -1px;
+        }
 
-    /* Image Placeholder Style */  
-    .iit-image-box {  
-        background: linear-gradient(rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;  
-        border-bottom: 2px solid var(--neonBlue);  
-    }  
-</style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    </style>
+</head>
 
-</head>  
-<body class="bg-darker text-slate-200 min-h-screen selection:bg-neonPink selection:text-white">  <!-- Hero Section -->  
-<header class="iit-image-box py-16 px-4 relative overflow-hidden flex flex-col items-center justify-center text-center">  
-    <!-- Motivational Quote -->  
-    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded shadow-[0_0_10px_#dc2626] animate-pulse">  
-        NO EXCUSES. JUST EXECUTION.  
-    </div>  
-      
-    <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-4 glow-text-blue tracking-tight">  
-        MISSION <span class="text-neonBlue">IIT</span> 2026  
-    </h1>  
-    <p class="text-lg md:text-xl font-light text-slate-300 max-w-2xl mx-auto italic mb-6">  
-        "Jab tak todenge nahi, tab tak chhodenge nahi. Tera sapna teri aukaat se bada hai, toh mehnat bhi aukaat se badi karni padegi."  
-    </p>  
-      
-    <!-- System Prompt Format Image Tag Placeholder -->  
-    <div class="hidden text-sm text-slate-400"></div>  
+<body class="text-slate-200 min-h-screen p-4 md:p-8 selection:bg-neonPink selection:text-white">
 
-    <div class="flex gap-4 mt-4">  
-        <span class="px-4 py-2 rounded-full border border-neonPink text-neonPink text-sm font-bold shadow-[0_0_10px_rgba(244,63,94,0.3)]">  
-            <i class="fa-solid fa-crosshairs mr-2"></i>Target: 99.9%ile  
-        </span>  
-        <span class="px-4 py-2 rounded-full border border-neonGreen text-neonGreen text-sm font-bold shadow-[0_0_10px_rgba(52,211,153,0.3)]">  
-            <i class="fa-solid fa-lock mr-2"></i>Syllabus Lock: 20 March  
-        </span>  
-    </div>  
-</header>  
+    <header class="text-center mb-10 relative">
+        <h1 class="text-5xl md:text-7xl font-display font-bold mb-2 tracking-tight mt-6">
+            MISSION <span class="text-neonBlue drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">IIT</span> 2026
+        </h1>
+        <p class="italic text-slate-400">18 Feb → 20 March • Zero Excuses.</p>
+    </header>
 
-<!-- Progress Bar Section -->  
-<div class="max-w-6xl mx-auto px-4 py-8">  
-    <div class="glass-panel p-6 rounded-2xl mb-10 flex flex-col md:flex-row items-center justify-between gap-6">  
-        <div class="w-full md:w-1/3 text-center md:text-left">  
-            <h2 class="font-display text-2xl font-bold text-white">Tera Comeback Meter 🔥</h2>  
-            <p class="text-slate-400 text-sm">Roz ek kadam IIT ki taraf...</p>  
-        </div>  
-        <div class="w-full md:w-2/3">  
-            <div class="flex justify-between text-sm mb-2 font-bold">  
-                <span class="text-neonBlue">Progress</span>  
-                <span id="progress-text" class="text-neonGreen">0% Complete</span>  
-            </div>  
-            <div class="w-full bg-slate-800 rounded-full h-4 overflow-hidden border border-slate-700">  
-                <div id="progress-bar" class="bg-gradient-to-r from-neonBlue to-neonGreen h-4 rounded-full transition-all duration-500 ease-out w-0 shadow-[0_0_10px_#34d399]"></div>  
-            </div>  
-        </div>  
-    </div>  
+    <!-- DASHBOARD WIDGETS -->
+    <section class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center">
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">⏳ Countdown</span>
+            <span id="timer" class="text-neonBlue font-display font-bold text-lg md:text-xl">--:--:--</span>
+        </div>
+        <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center">
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">📅 Days Left</span>
+            <span id="daysLeft" class="text-3xl md:text-4xl text-neonPink font-display font-bold">--</span>
+        </div>
+        <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center col-span-2 md:col-span-2">
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">⚡ AI Status</span>
+            <span id="status" class="text-neonGreen italic font-medium text-lg">System Booting...</span>
+        </div>
+    </section>
 
-    <!-- Phases Container -->  
-    <div class="space-y-12">  
+    <!-- ANALYTICS -->
+    <section class="max-w-6xl mx-auto grid grid-cols-3 gap-4 mb-6">
+        <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonBlue">
+            <div class="text-neonBlue mb-1"><i class="fa-solid fa-calculator text-xl"></i></div>
+            <div class="text-xs text-slate-400 uppercase mb-1">Maths</div>
+            <div id="mathPct" class="text-2xl font-bold">0%</div>
+        </div>
+        <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonPink">
+            <div class="text-neonPink mb-1"><i class="fa-solid fa-atom text-xl"></i></div>
+            <div class="text-xs text-slate-400 uppercase mb-1">Physics</div>
+            <div id="phyPct" class="text-2xl font-bold">0%</div>
+        </div>
+        <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonYellow">
+            <div class="text-neonYellow mb-1"><i class="fa-solid fa-flask text-xl"></i></div>
+            <div class="text-xs text-slate-400 uppercase mb-1">Chemistry</div>
+            <div id="chemPct" class="text-2xl font-bold">0%</div>
+        </div>
+    </section>
 
-        <!-- PHASE 1 -->  
-        <section>  
-            <h3 class="font-display text-2xl font-bold text-neonBlue mb-4 flex items-center">  
-                <i class="fa-solid fa-rocket mr-3"></i> PHASE-1: Neev (Foundation) <span class="ml-auto text-sm text-slate-400 font-normal">18 Feb – 28 Feb</span>  
-            </h3>  
-            <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto">  
-                <table class="w-full text-left border-collapse">  
-                    <thead>  
-                        <tr class="bg-slate-800/50 border-b border-slate-700 text-slate-300">  
-                            <th class="p-4 font-semibold w-24">Date</th>  
-                            <th class="p-4 font-semibold w-1/3">Slot-1 (Maths)</th>  
-                            <th class="p-4 font-semibold w-1/3">Slot-2 (Phy/Chem)</th>  
-                            <th class="p-4 font-semibold text-center w-24">Ho Gaya?</th>  
-                        </tr>  
-                    </thead>  
-                    <tbody class="divide-y divide-slate-800">  
-                        <!-- JS will calculate progress based on checkbox class 'task-check' -->  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">18 Feb</td><td class="p-4 text-blue-400">Sequence & Series</td><td class="p-4 text-yellow-400">Chem: Mole Concept</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">19 Feb</td><td class="p-4 text-blue-400">Binomial Theorem</td><td class="p-4 text-pink-400">Phy: Units & Dimensions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">20 Feb</td><td class="p-4 text-blue-400">P&C</td><td class="p-4 text-yellow-400">Chem: Redox Reaction</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">21 Feb</td><td class="p-4 text-blue-400">Quadratic Eq</td><td class="p-4 text-pink-400">Phy: Kinematics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">22 Feb</td><td class="p-4 text-blue-400">Matrices</td><td class="p-4 text-yellow-400">Chem: Atomic Structure</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">23 Feb</td><td class="p-4 text-blue-400">Determinants</td><td class="p-4 text-pink-400">Phy: Laws of Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">24 Feb</td><td class="p-4 text-blue-400">Limits</td><td class="p-4 text-yellow-400">Chem: Periodic Table</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">25 Feb</td><td class="p-4 text-blue-400">Continuity</td><td class="p-4 text-pink-400">Phy: WEP</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">26 Feb</td><td class="p-4 text-blue-400">Differentiability + MOD</td><td class="p-4 text-yellow-400">Chem: Chemical Bonding</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">27 Feb</td><td class="p-4 text-blue-400">Indefinite Integration</td><td class="p-4 text-pink-400">Phy: COM & Collision</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">28 Feb</td><td class="p-4 text-blue-400">Definite Integration</td><td class="p-4 text-yellow-400">Chem: States of Matter</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                    </tbody>  
-                </table>  
-            </div>  
-        </section>  
+    <!-- PROGRESS BAR -->
+    <div class="max-w-6xl mx-auto glass p-5 rounded-2xl mb-10">
+        <div class="flex justify-between text-sm font-bold mb-3">
+            <span class="text-slate-300 uppercase tracking-widest text-xs">Overall Progress</span>
+            <span id="progressText" class="text-neonGreen">0%</span>
+        </div>
+        <div class="h-4 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-neonBlue via-neonPink to-neonGreen w-0 transition-all duration-700 ease-out"></div>
+        </div>
+    </div>
 
-        <!-- PHASE 2 -->  
-        <section>  
-            <h3 class="font-display text-2xl font-bold text-neonYellow mb-4 flex items-center">  
-                <i class="fa-solid fa-fire mr-3"></i> PHASE-2: Core Scoring <span class="ml-auto text-sm text-slate-400 font-normal">1 Mar – 10 Mar</span>  
-            </h3>  
-            <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonYellow">  
-                <table class="w-full text-left border-collapse">  
-                    <tbody class="divide-y divide-slate-800">  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24">1 Mar</td><td class="p-4 w-1/3 text-blue-400">AUC</td><td class="p-4 w-1/3 text-pink-400">Phy: Rotational Motion</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">2 Mar</td><td class="p-4 text-blue-400">Differential Eq</td><td class="p-4 text-yellow-400">Chem: Thermodynamics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">3 Mar</td><td class="p-4 text-blue-400">Vector Algebra</td><td class="p-4 text-pink-400">Phy: Gravitation</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">4 Mar</td><td class="p-4 text-blue-400">3D Geometry</td><td class="p-4 text-yellow-400">Chem: Chemical Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">5 Mar</td><td class="p-4 text-blue-400">Straight Line</td><td class="p-4 text-pink-400">Phy: KTG + Thermal</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">6 Mar</td><td class="p-4 text-blue-400">Circle</td><td class="p-4 text-yellow-400">Chem: Ionic Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">7 Mar</td><td class="p-4 text-blue-400">Parabola</td><td class="p-4 text-pink-400">Phy: SHM</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">8 Mar</td><td class="p-4 text-blue-400">Ellipse</td><td class="p-4 text-yellow-400">Chem: Solutions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">9 Mar</td><td class="p-4 text-blue-400">Hyperbola</td><td class="p-4 text-pink-400">Phy: Wave Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">10 Mar</td><td class="p-4 text-blue-400">Statistics</td><td class="p-4 text-yellow-400">Chem: Electrochemistry</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                    </tbody>  
-                </table>  
-            </div>  
-        </section>  
+    <!-- CHECKLIST -->
+    <section class="max-w-6xl mx-auto glass rounded-2xl overflow-hidden mb-10">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-slate-800/80 border-b border-slate-700">
+                    <tr>
+                        <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold w-24">Date</th>
+                        <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold">Slot-1 (Maths)</th>
+                        <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold">Slot-2 (Phy/Chem)</th>
+                        <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold text-center w-24">Done</th>
+                    </tr>
+                </thead>
+                <tbody id="tasks" class="divide-y divide-slate-800/50">
+                    <!-- Tasks will be injected by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-        <!-- PHASE 3 -->  
-        <section>  
-            <h3 class="font-display text-2xl font-bold text-neonPink mb-4 flex items-center glow-text-pink">  
-                <i class="fa-solid fa-bolt mr-3"></i> PHASE-3: Electro + Inorganic <span class="ml-auto text-sm text-slate-400 font-normal">11 Mar – 15 Mar</span>  
-            </h3>  
-            <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonPink shadow-[0_0_15px_rgba(244,63,94,0.1)]">  
-                <table class="w-full text-left border-collapse">  
-                    <tbody class="divide-y divide-slate-800">  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24">11 Mar</td><td class="p-4 w-1/3 text-blue-400">Probability</td><td class="p-4 w-1/3 text-pink-400">Phy: Electrostatics</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">12 Mar</td><td class="p-4 text-blue-400">AOD</td><td class="p-4 text-yellow-400">Chem: Chemical Kinetics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">13 Mar</td><td class="p-4 text-blue-400">Trigonometry (Rev)</td><td class="p-4 text-pink-400">Phy: Capacitors</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">14 Mar</td><td class="p-4 text-blue-400">Sets & Relations</td><td class="p-4 text-yellow-400">Chem: Coordination Compounds</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4">15 Mar</td><td class="p-4 text-blue-400">Mathematical Reasoning</td><td class="p-4 text-pink-400">Phy: Current Electricity</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                    </tbody>  
-                </table>  
-            </div>  
-        </section>  
+    <!-- ALARM BUTTON -->
+    <div class="text-center pb-20">
+        <button onclick="window.enableReminder()" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-neonBlue/20 group">
+            <i class="fa-regular fa-bell text-neonYellow group-hover:animate-swing mr-2"></i> Enable Daily Alarm (6 AM)
+        </button>
+    </div>
 
-        <!-- PHASE 4 -->  
-        <section>  
-            <h3 class="font-display text-2xl font-bold text-neonGreen mb-4 flex items-center">  
-                <i class="fa-solid fa-flag-checkered mr-3"></i> PHASE-4: Finish Everything <span class="ml-auto text-sm text-slate-400 font-normal">16 Mar – 20 Mar</span>  
-            </h3>  
-            <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonGreen shadow-[0_0_15px_rgba(52,211,153,0.1)]">  
-                <table class="w-full text-left border-collapse">  
-                    <tbody class="divide-y divide-slate-800">  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24 font-bold text-white">16 Mar</td><td class="p-4 w-1/3 text-blue-400">ITF (light)</td><td class="p-4 w-1/3 text-pink-400">Phy: Moving Charges & Mag.</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">17 Mar</td><td class="p-4 text-blue-400">Maths PYQs</td><td class="p-4 text-yellow-400">Chem: d- & f-Block</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">18 Mar</td><td class="p-4 text-blue-400">Maths Mock Analysis</td><td class="p-4 text-pink-400">Phy: EMI</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">19 Mar</td><td class="p-4 text-blue-400">Weak Maths Fix</td><td class="p-4 text-yellow-400">Chem: GOC + Isomerism</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                        <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">20 Mar</td><td class="p-4 text-blue-400">Formula Revision (ALL)</td><td class="p-4 text-pink-400 font-bold">Phy: AC + Ray Optics + Modern</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>  
-                    </tbody>  
-                </table>  
-            </div>  
-        </section>  
-          
-    </div>  
-      
-    <footer class="mt-16 text-center pb-8">  
-        <h2 class="font-display text-3xl font-bold text-slate-500 mb-2 uppercase tracking-widest">Only Mocks After 20th!</h2>  
-        <p class="text-neonPink italic">Bhai roke rukna nahi hai, ab IIT hi rukna hai!</p>  
-    </footer>  
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-</div>  
+        // Global State
+        window.taskState = {};
+        let useFirebase = false;
+        let db, auth, userId, appId;
 
-<!-- JavaScript For Interactivity -->  
-<script>  
-    document.addEventListener('DOMContentLoaded', () => {  
-        const checkboxes = document.querySelectorAll('.task-check');  
-        const progressBar = document.getElementById('progress-bar');  
-        const progressText = document.getElementById('progress-text');  
-        const totalTasks = checkboxes.length;  
+        // Try to Setup Firebase (Fails safely on GitHub Pages)
+        try {
+            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                if (firebaseConfig.apiKey) {
+                    appId = typeof __app_id !== 'undefined' ? __app_id : 'jee-app-id';
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+                    useFirebase = true;
+                }
+            }
+        } catch (error) {
+            console.warn("Running without Firebase (Local execution mode).");
+        }
 
-        // Load saved state (local storage)  
-        let savedState = JSON.parse(localStorage.getItem('jee2026_progress')) || {};  
-          
-        checkboxes.forEach((cb, index) => {  
-            // Initialize state  
-            if(savedState[index]) {  
-                cb.checked = true;  
-                cb.closest('.task-row').classList.add('task-done');  
-            }  
+        // Exact Schedule Data
+        const schedule = [
+            { date: "18 Feb", phase: 1, m: "Sequence & Series", p2: "Mole Concept", type: "chem" },
+            { date: "19 Feb", phase: 1, m: "Binomial Theorem", p2: "Units & Dimensions", type: "phy" },
+            { date: "20 Feb", phase: 1, m: "P & C", p2: "Redox Reaction", type: "chem" },
+            { date: "21 Feb", phase: 1, m: "Quadratic Eq", p2: "Kinematics", type: "phy" },
+            { date: "22 Feb", phase: 1, m: "Matrices", p2: "Atomic Structure", type: "chem" },
+            { date: "23 Feb", phase: 1, m: "Determinants", p2: "Laws of Motion", type: "phy" },
+            { date: "24 Feb", phase: 1, m: "Limits", p2: "Periodic Table", type: "chem" },
+            { date: "25 Feb", phase: 1, m: "Continuity", p2: "WEP", type: "phy" },
+            { date: "26 Feb", phase: 1, m: "Diff + MOD", p2: "Chemical Bonding", type: "chem" },
+            { date: "27 Feb", phase: 1, m: "Indefinite Int.", p2: "COM & Collision", type: "phy" },
+            { date: "28 Feb", phase: 1, m: "Definite Int.", p2: "States of Matter", type: "chem" },
+            
+            { date: "1 Mar", phase: 2, m: "Area Under Curve", p2: "Rotational Motion", type: "phy" },
+            { date: "2 Mar", phase: 2, m: "Differential Eq", p2: "Thermodynamics", type: "chem" },
+            { date: "3 Mar", phase: 2, m: "Vector Algebra", p2: "Gravitation", type: "phy" },
+            { date: "4 Mar", phase: 2, m: "3D Geometry", p2: "Chemical Equilibrium", type: "chem" },
+            { date: "5 Mar", phase: 2, m: "Straight Line", p2: "KTG + Thermal", type: "phy" },
+            { date: "6 Mar", phase: 2, m: "Circle", p2: "Ionic Equilibrium", type: "chem" },
+            { date: "7 Mar", phase: 2, m: "Parabola", p2: "SHM", type: "phy" },
+            { date: "8 Mar", phase: 2, m: "Ellipse", p2: "Solutions", type: "chem" },
+            { date: "9 Mar", phase: 2, m: "Hyperbola", p2: "Wave Motion", type: "phy" },
+            { date: "10 Mar", phase: 2, m: "Statistics", p2: "Electrochemistry", type: "chem" },
 
-            // Listen for clicks  
-            cb.add
+            { date: "11 Mar", phase: 3, m: "Probability", p2: "Electrostatics", type: "phy" },
+            { date: "12 Mar", phase: 3, m: "AOD", p2: "Chemical Kinetics", type: "chem" },
+            { date: "13 Mar", phase: 3, m: "Trigonometry (Rev)", p2: "Capacitors", type: "phy" },
+            { date: "14 Mar", phase: 3, m: "Sets & Relations", p2: "Coordination Comp.", type: "chem" },
+            { date: "15 Mar", phase: 3, m: "Math Reasoning", p2: "Current Electricity", type: "phy" },
+
+            { date: "16 Mar", phase: 4, m: "ITF (light)", p2: "Moving Charges", type: "phy" },
+            { date: "17 Mar", phase: 4, m: "Maths PYQs", p2: "d- & f-Block", type: "chem" },
+            { date: "18 Mar", phase: 4, m: "Mock Analysis", p2: "EMI", type: "phy" },
+            { date: "19 Mar", phase: 4, m: "Weak Maths Fix", p2: "GOC + Isomerism", type: "chem" },
+            { date: "20 Mar", phase: 4, m: "Formula Revision", p2: "AC+Optics+Modern", type: "phy" }
+        ];
+
+        // 🎨 RENDER TABLE
+        const tbody = document.getElementById("tasks");
+        schedule.forEach((task, i) => {
+            const p2Color = task.type === 'phy' ? 'text-neonPink' : 'text-neonYellow';
+            const prefix = task.type === 'phy' ? 'Phy: ' : 'Chem: ';
+            
+            if(i === 0 || schedule[i-1].phase !== task.phase) {
+                const phaseNames = ["FOUNDATION", "CORE SCORING", "ELECTRO + INORGANIC", "FINISH EVERYTHING"];
+                tbody.innerHTML += `<tr><td colspan="4" class="bg-slate-800/50 p-2 text-center text-xs font-bold text-slate-400 tracking-widest border-y border-slate-700 uppercase">PHASE ${task.phase}: ${phaseNames[task.phase-1]}</td></tr>`;
+            }
+
+            tbody.innerHTML += `
+                <tr id="row-${i}" class="hover:bg-slate-800/30 transition-colors cursor-pointer" onclick="window.triggerToggle(${i}, event)">
+                    <td class="p-4 font-display font-bold text-slate-300">${task.date}</td>
+                    <td class="p-4 text-neonBlue font-medium">${task.m}</td>
+                    <td class="p-4 ${p2Color}">${prefix}${task.p2}</td>
+                    <td class="p-4 text-center">
+                        <input type="checkbox" id="cb-${i}" class="cyber-checkbox">
+                    </td>
+                </tr>`;
+        });
+
+        // 🔥 BULLETPROOF UI UPDATES & CLICK LOGIC (Runs Sync)
+        window.triggerToggle = function(i, event) {
+            // Prevent double click if user clicks directly on the checkbox
+            if (event && event.target.tagName.toLowerCase() === 'input') return;
+
+            const cb = document.getElementById(`cb-${i}`);
+            if (cb) {
+                cb.checked = !cb.checked;
+                window.toggleTask(i);
+            }
+        };
+
+        window.toggleTask = function(i) {
+            const cb = document.getElementById(`cb-${i}`);
+            const row = document.getElementById(`row-${i}`);
+            if (!cb || !row) return;
+
+            const isChecked = cb.checked;
+            window.taskState[i] = isChecked; // Update memory instantly
+
+            if(isChecked) row.classList.add('task-done');
+            else row.classList.remove('task-done');
+
+            updateAnalytics();
+
+            // Sync to Database only if connected
+            if (useFirebase && userId) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'users', userId, 'checklistData');
+                    setDoc(docRef, { [i]: isChecked }, { merge: true });
+                } catch (e) {
+                    console.log("Sync skipped.");
+                }
+            }
+        };
+
+        // 📊 ANALYTICS
+        function updateAnalytics() {
+            let mDone=0, pDone=0, cDone=0;
+            let mTot=schedule.length;
+            let pTot=schedule.filter(s=>s.type==='phy').length;
+            let cTot=schedule.filter(s=>s.type==='chem').length;
+
+            schedule.forEach((task, i) => {
+                if(window.taskState[i]) {
+                    mDone++;
+                    if(task.type === 'phy') pDone++;
+                    else cDone++;
+                }
+            });
+
+            document.getElementById('mathPct').innerText = Math.round((mDone/mTot)*100 || 0) + '%';
+            document.getElementById('phyPct').innerText = Math.round((pDone/pTot)*100 || 0) + '%';
+            document.getElementById('chemPct').innerText = Math.round((cDone/cTot)*100 || 0) + '%';
+            
+            const totalPct = Math.round(((mDone+pDone+cDone) / (mTot+pTot+cTot)) * 100 || 0);
+            document.getElementById('progressBar').style.width = totalPct + '%';
+            document.getElementById('progressText').innerText = totalPct + '%';
+            
+            if(totalPct === 100) {
+                document.getElementById('progressBar').classList.add('shadow-[0_0_20px_#34d399]');
+                document.getElementById('progressText').innerText = 'SYLLABUS LOCKED 🏆';
+            } else {
+                document.getElementById('progressBar').classList.remove('shadow-[0_0_20px_#34d399]');
+            }
+        }
+
+        // 🔐 FIREBASE AUTH & LIVE LISTENER (If Available)
+        if (useFirebase) {
+            const initAuth = async () => {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch(e) {}
+            };
+            initAuth();
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    userId = user.uid;
+                    const docRef = doc(db, 'artifacts', appId, 'users', userId, 'checklistData');
+                    
+                    onSnapshot(docRef, (docSnap) => {
+                        if (docSnap.exists()) {
+                            const data = docSnap.data();
+                            window.taskState = data; // Update memory
+                            
+                            // Re-render visuals
+                            schedule.forEach((_, i) => {
+                                const cb = document.getElementById(`cb-${i}`);
+                                const row = document.getElementById(`row-${i}`);
+                                if (cb && row) {
+                                    cb.checked = !!data[i];
+                                    if(cb.checked) row.classList.add('task-done');
+                                    else row.classList.remove('task-done');
+                                }
+                            });
+                            updateAnalytics();
+                        }
+                    }, (error) => console.log("Live updates unavailable"));
+                }
+            });
+        }
+
+        // Add Event Listeners Directly to Checkboxes To Ensure Safety
+        document.querySelectorAll('.cyber-checkbox').forEach((cb, i) => {
+            cb.addEventListener('change', () => window.toggleTask(i));
+        });
+
+        // ⏱️ TIMER
+        const jeeTarget = new Date("2026-04-02T09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = jeeTarget - now;
+            
+            if (distance < 0) {
+                document.getElementById('timer').innerText = "IT'S TIME.";
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('daysLeft').innerText = days;
+            document.getElementById('timer').innerText = 
+                `${hours.toString().padStart(2,'0')}h ${minutes.toString().padStart(2,'0')}m ${seconds.toString().padStart(2,'0')}s`;
+        }, 1000);
+
+        // 🤖 STATUS
+        const msgs = ["Grinding quietly...", "No zero days.", "Discipline > Motivation", "Future IITian at work.", "Stay Hard."];
+        let msgIndex = 0;
+        setInterval(() => {
+            document.getElementById('status').innerText = msgs[msgIndex];
+            msgIndex = (msgIndex + 1) % msgs.length;
+        }, 3000);
+
+        // 🔔 NOTIFICATIONS
+        window.enableReminder = function() {
+            if (!("Notification" in window)) {
+                alert("Browser notifications not supported.");
+                return;
+            }
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    alert("Daily 6 AM reminder enabled! Keep tab open.");
+                    setInterval(() => {
+                        const n = new Date();
+                        if(n.getHours() === 6 && n.getMinutes() === 0) {
+                            new Notification("Mission IIT 2026", { 
+                                body: "Uth ja bhai. Checklist tera wait kar rahi hai." 
+                            });
+                        }
+                    }, 60000);
+                }
+    
