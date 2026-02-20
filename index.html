@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission IIT JEE 2026 – OS</title>
 
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -34,15 +35,16 @@
             background-attachment: fixed;
         }
         .glass {
-            background: rgba(30, 41, 59, 0.4);
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         .task-done {
             opacity: 0.35;
             text-decoration: line-through;
-            background-color: rgba(52, 211, 153, 0.05);
+            background-color: rgba(52, 211, 153, 0.08);
         }
         
         .cyber-checkbox {
@@ -53,7 +55,6 @@
             border: 2px solid #475569;
             border-radius: 6px;
             background: rgba(2, 6, 23, 0.5);
-            cursor: pointer;
             position: relative;
             transition: all 0.2s;
         }
@@ -72,7 +73,8 @@
             top: -1px;
         }
 
-        ::-webkit-scrollbar { width: 6px; }
+        /* Scrollbar styling for smooth experience */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
@@ -80,8 +82,8 @@
 
 <body class="text-slate-200 min-h-screen p-4 md:p-8 selection:bg-neonPink selection:text-white">
 
-    <header class="text-center mb-10 relative">
-        <h1 class="text-5xl md:text-7xl font-display font-bold mb-2 tracking-tight mt-6">
+    <header class="text-center mb-10 relative mt-4">
+        <h1 class="text-5xl md:text-7xl font-display font-bold mb-2 tracking-tight">
             MISSION <span class="text-neonBlue drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">IIT</span> 2026
         </h1>
         <p class="italic text-slate-400">18 Feb → 20 March • Zero Excuses.</p>
@@ -90,39 +92,39 @@
     <!-- DASHBOARD WIDGETS -->
     <section class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center">
-            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">⏳ Countdown</span>
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider"><i class="fa-solid fa-hourglass-half mr-2 text-neonBlue"></i>Countdown</span>
             <span id="timer" class="text-neonBlue font-display font-bold text-lg md:text-xl">--:--:--</span>
         </div>
         <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center">
-            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">📅 Days Left</span>
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider"><i class="fa-regular fa-calendar-xmark mr-2 text-neonPink"></i>Days Left</span>
             <span id="daysLeft" class="text-3xl md:text-4xl text-neonPink font-display font-bold">--</span>
         </div>
         <div class="glass p-5 rounded-2xl text-center flex flex-col justify-center col-span-2 md:col-span-2">
-            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider">⚡ AI Status</span>
-            <span id="status" class="text-neonGreen italic font-medium text-lg">System Booting...</span>
+            <span class="text-slate-400 text-sm font-semibold mb-1 uppercase tracking-wider"><i class="fa-solid fa-bolt mr-2 text-neonGreen"></i>AI Status</span>
+            <span id="status" class="text-neonGreen italic font-medium text-lg">System Active</span>
         </div>
     </section>
 
-    <!-- ANALYTICS -->
+    <!-- SUBJECT ANALYTICS -->
     <section class="max-w-6xl mx-auto grid grid-cols-3 gap-4 mb-6">
         <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonBlue">
             <div class="text-neonBlue mb-1"><i class="fa-solid fa-calculator text-xl"></i></div>
-            <div class="text-xs text-slate-400 uppercase mb-1">Maths</div>
-            <div id="mathPct" class="text-2xl font-bold">0%</div>
+            <div class="text-[10px] md:text-xs text-slate-400 uppercase mb-1 font-bold">Maths</div>
+            <div id="mathPct" class="text-2xl font-display font-bold">0%</div>
         </div>
         <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonPink">
             <div class="text-neonPink mb-1"><i class="fa-solid fa-atom text-xl"></i></div>
-            <div class="text-xs text-slate-400 uppercase mb-1">Physics</div>
-            <div id="phyPct" class="text-2xl font-bold">0%</div>
+            <div class="text-[10px] md:text-xs text-slate-400 uppercase mb-1 font-bold">Physics</div>
+            <div id="phyPct" class="text-2xl font-display font-bold">0%</div>
         </div>
         <div class="glass p-4 rounded-xl text-center border-t-2 border-t-neonYellow">
             <div class="text-neonYellow mb-1"><i class="fa-solid fa-flask text-xl"></i></div>
-            <div class="text-xs text-slate-400 uppercase mb-1">Chemistry</div>
-            <div id="chemPct" class="text-2xl font-bold">0%</div>
+            <div class="text-[10px] md:text-xs text-slate-400 uppercase mb-1 font-bold">Chemistry</div>
+            <div id="chemPct" class="text-2xl font-display font-bold">0%</div>
         </div>
     </section>
 
-    <!-- PROGRESS BAR -->
+    <!-- OVERALL PROGRESS BAR -->
     <div class="max-w-6xl mx-auto glass p-5 rounded-2xl mb-10">
         <div class="flex justify-between text-sm font-bold mb-3">
             <span class="text-slate-300 uppercase tracking-widest text-xs">Overall Progress</span>
@@ -133,11 +135,11 @@
         </div>
     </div>
 
-    <!-- CHECKLIST -->
+    <!-- CHECKLIST TABLE -->
     <section class="max-w-6xl mx-auto glass rounded-2xl overflow-hidden mb-10">
         <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead class="bg-slate-800/80 border-b border-slate-700">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-800/90 border-b border-slate-700">
                     <tr>
                         <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold w-24">Date</th>
                         <th class="p-4 text-xs uppercase tracking-wider text-slate-400 font-semibold">Slot-1 (Maths)</th>
@@ -146,7 +148,7 @@
                     </tr>
                 </thead>
                 <tbody id="tasks" class="divide-y divide-slate-800/50">
-                    <!-- Tasks will be injected by JavaScript -->
+                    <!-- Javascript generates rows here -->
                 </tbody>
             </table>
         </div>
@@ -154,254 +156,202 @@
 
     <!-- ALARM BUTTON -->
     <div class="text-center pb-20">
-        <button onclick="window.enableReminder()" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-neonBlue/20 group">
+        <button onclick="enableReminder()" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-neonBlue/20 group">
             <i class="fa-regular fa-bell text-neonYellow group-hover:animate-swing mr-2"></i> Enable Daily Alarm (6 AM)
         </button>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global State
-        window.taskState = {};
-        let useFirebase = false;
-        let db, auth, userId, appId;
-
-        // Try to Setup Firebase (Fails safely on GitHub Pages)
-        try {
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                if (firebaseConfig.apiKey) {
-                    appId = typeof __app_id !== 'undefined' ? __app_id : 'jee-app-id';
-                    const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
-                    db = getFirestore(app);
-                    useFirebase = true;
-                }
-            }
-        } catch (error) {
-            console.warn("Running without Firebase (Local execution mode).");
-        }
-
-        // Exact Schedule Data
-        const schedule = [
-            { date: "18 Feb", phase: 1, m: "Sequence & Series", p2: "Mole Concept", type: "chem" },
-            { date: "19 Feb", phase: 1, m: "Binomial Theorem", p2: "Units & Dimensions", type: "phy" },
-            { date: "20 Feb", phase: 1, m: "P & C", p2: "Redox Reaction", type: "chem" },
-            { date: "21 Feb", phase: 1, m: "Quadratic Eq", p2: "Kinematics", type: "phy" },
-            { date: "22 Feb", phase: 1, m: "Matrices", p2: "Atomic Structure", type: "chem" },
-            { date: "23 Feb", phase: 1, m: "Determinants", p2: "Laws of Motion", type: "phy" },
-            { date: "24 Feb", phase: 1, m: "Limits", p2: "Periodic Table", type: "chem" },
-            { date: "25 Feb", phase: 1, m: "Continuity", p2: "WEP", type: "phy" },
-            { date: "26 Feb", phase: 1, m: "Diff + MOD", p2: "Chemical Bonding", type: "chem" },
-            { date: "27 Feb", phase: 1, m: "Indefinite Int.", p2: "COM & Collision", type: "phy" },
-            { date: "28 Feb", phase: 1, m: "Definite Int.", p2: "States of Matter", type: "chem" },
+    <!-- PURE JAVASCRIPT (No external modules to fail) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
             
-            { date: "1 Mar", phase: 2, m: "Area Under Curve", p2: "Rotational Motion", type: "phy" },
-            { date: "2 Mar", phase: 2, m: "Differential Eq", p2: "Thermodynamics", type: "chem" },
-            { date: "3 Mar", phase: 2, m: "Vector Algebra", p2: "Gravitation", type: "phy" },
-            { date: "4 Mar", phase: 2, m: "3D Geometry", p2: "Chemical Equilibrium", type: "chem" },
-            { date: "5 Mar", phase: 2, m: "Straight Line", p2: "KTG + Thermal", type: "phy" },
-            { date: "6 Mar", phase: 2, m: "Circle", p2: "Ionic Equilibrium", type: "chem" },
-            { date: "7 Mar", phase: 2, m: "Parabola", p2: "SHM", type: "phy" },
-            { date: "8 Mar", phase: 2, m: "Ellipse", p2: "Solutions", type: "chem" },
-            { date: "9 Mar", phase: 2, m: "Hyperbola", p2: "Wave Motion", type: "phy" },
-            { date: "10 Mar", phase: 2, m: "Statistics", p2: "Electrochemistry", type: "chem" },
+            // 1. EXACT SCHEDULE DATA
+            const schedule = [
+                { date: "18 Feb", phase: 1, m: "Sequence & Series", p2: "Mole Concept", type: "chem" },
+                { date: "19 Feb", phase: 1, m: "Binomial Theorem", p2: "Units & Dimensions", type: "phy" },
+                { date: "20 Feb", phase: 1, m: "P & C", p2: "Redox Reaction", type: "chem" },
+                { date: "21 Feb", phase: 1, m: "Quadratic Eq", p2: "Kinematics", type: "phy" },
+                { date: "22 Feb", phase: 1, m: "Matrices", p2: "Atomic Structure", type: "chem" },
+                { date: "23 Feb", phase: 1, m: "Determinants", p2: "Laws of Motion", type: "phy" },
+                { date: "24 Feb", phase: 1, m: "Limits", p2: "Periodic Table", type: "chem" },
+                { date: "25 Feb", phase: 1, m: "Continuity", p2: "WEP", type: "phy" },
+                { date: "26 Feb", phase: 1, m: "Diff + MOD", p2: "Chemical Bonding", type: "chem" },
+                { date: "27 Feb", phase: 1, m: "Indefinite Int.", p2: "COM & Collision", type: "phy" },
+                { date: "28 Feb", phase: 1, m: "Definite Int.", p2: "States of Matter", type: "chem" },
+                
+                { date: "1 Mar", phase: 2, m: "Area Under Curve", p2: "Rotational Motion", type: "phy" },
+                { date: "2 Mar", phase: 2, m: "Differential Eq", p2: "Thermodynamics", type: "chem" },
+                { date: "3 Mar", phase: 2, m: "Vector Algebra", p2: "Gravitation", type: "phy" },
+                { date: "4 Mar", phase: 2, m: "3D Geometry", p2: "Chemical Equilibrium", type: "chem" },
+                { date: "5 Mar", phase: 2, m: "Straight Line", p2: "KTG + Thermal", type: "phy" },
+                { date: "6 Mar", phase: 2, m: "Circle", p2: "Ionic Equilibrium", type: "chem" },
+                { date: "7 Mar", phase: 2, m: "Parabola", p2: "SHM", type: "phy" },
+                { date: "8 Mar", phase: 2, m: "Ellipse", p2: "Solutions", type: "chem" },
+                { date: "9 Mar", phase: 2, m: "Hyperbola", p2: "Wave Motion", type: "phy" },
+                { date: "10 Mar", phase: 2, m: "Statistics", p2: "Electrochemistry", type: "chem" },
 
-            { date: "11 Mar", phase: 3, m: "Probability", p2: "Electrostatics", type: "phy" },
-            { date: "12 Mar", phase: 3, m: "AOD", p2: "Chemical Kinetics", type: "chem" },
-            { date: "13 Mar", phase: 3, m: "Trigonometry (Rev)", p2: "Capacitors", type: "phy" },
-            { date: "14 Mar", phase: 3, m: "Sets & Relations", p2: "Coordination Comp.", type: "chem" },
-            { date: "15 Mar", phase: 3, m: "Math Reasoning", p2: "Current Electricity", type: "phy" },
+                { date: "11 Mar", phase: 3, m: "Probability", p2: "Electrostatics", type: "phy" },
+                { date: "12 Mar", phase: 3, m: "AOD", p2: "Chemical Kinetics", type: "chem" },
+                { date: "13 Mar", phase: 3, m: "Trigonometry (Rev)", p2: "Capacitors", type: "phy" },
+                { date: "14 Mar", phase: 3, m: "Sets & Relations", p2: "Coordination Comp.", type: "chem" },
+                { date: "15 Mar", phase: 3, m: "Math Reasoning", p2: "Current Electricity", type: "phy" },
 
-            { date: "16 Mar", phase: 4, m: "ITF (light)", p2: "Moving Charges", type: "phy" },
-            { date: "17 Mar", phase: 4, m: "Maths PYQs", p2: "d- & f-Block", type: "chem" },
-            { date: "18 Mar", phase: 4, m: "Mock Analysis", p2: "EMI", type: "phy" },
-            { date: "19 Mar", phase: 4, m: "Weak Maths Fix", p2: "GOC + Isomerism", type: "chem" },
-            { date: "20 Mar", phase: 4, m: "Formula Revision", p2: "AC+Optics+Modern", type: "phy" }
-        ];
+                { date: "16 Mar", phase: 4, m: "ITF (light)", p2: "Moving Charges", type: "phy" },
+                { date: "17 Mar", phase: 4, m: "Maths PYQs", p2: "d- & f-Block", type: "chem" },
+                { date: "18 Mar", phase: 4, m: "Mock Analysis", p2: "EMI", type: "phy" },
+                { date: "19 Mar", phase: 4, m: "Weak Maths Fix", p2: "GOC + Isomerism", type: "chem" },
+                { date: "20 Mar", phase: 4, m: "Formula Revision", p2: "AC+Optics+Modern", type: "phy" }
+            ];
 
-        // 🎨 RENDER TABLE
-        const tbody = document.getElementById("tasks");
-        schedule.forEach((task, i) => {
-            const p2Color = task.type === 'phy' ? 'text-neonPink' : 'text-neonYellow';
-            const prefix = task.type === 'phy' ? 'Phy: ' : 'Chem: ';
-            
-            if(i === 0 || schedule[i-1].phase !== task.phase) {
-                const phaseNames = ["FOUNDATION", "CORE SCORING", "ELECTRO + INORGANIC", "FINISH EVERYTHING"];
-                tbody.innerHTML += `<tr><td colspan="4" class="bg-slate-800/50 p-2 text-center text-xs font-bold text-slate-400 tracking-widest border-y border-slate-700 uppercase">PHASE ${task.phase}: ${phaseNames[task.phase-1]}</td></tr>`;
+            // 2. LOAD SAVED DATA (Local Storage)
+            let savedState = {};
+            try {
+                const data = localStorage.getItem('iit_jee_os_data');
+                if (data) savedState = JSON.parse(data);
+            } catch (e) {
+                console.log("No previous data found.");
             }
 
-            tbody.innerHTML += `
-                <tr id="row-${i}" class="hover:bg-slate-800/30 transition-colors cursor-pointer" onclick="window.triggerToggle(${i}, event)">
-                    <td class="p-4 font-display font-bold text-slate-300">${task.date}</td>
-                    <td class="p-4 text-neonBlue font-medium">${task.m}</td>
-                    <td class="p-4 ${p2Color}">${prefix}${task.p2}</td>
-                    <td class="p-4 text-center">
-                        <input type="checkbox" id="cb-${i}" class="cyber-checkbox">
-                    </td>
-                </tr>`;
-        });
-
-        // 🔥 BULLETPROOF UI UPDATES & CLICK LOGIC (Runs Sync)
-        window.triggerToggle = function(i, event) {
-            // Prevent double click if user clicks directly on the checkbox
-            if (event && event.target.tagName.toLowerCase() === 'input') return;
-
-            const cb = document.getElementById(`cb-${i}`);
-            if (cb) {
-                cb.checked = !cb.checked;
-                window.toggleTask(i);
-            }
-        };
-
-        window.toggleTask = function(i) {
-            const cb = document.getElementById(`cb-${i}`);
-            const row = document.getElementById(`row-${i}`);
-            if (!cb || !row) return;
-
-            const isChecked = cb.checked;
-            window.taskState[i] = isChecked; // Update memory instantly
-
-            if(isChecked) row.classList.add('task-done');
-            else row.classList.remove('task-done');
-
-            updateAnalytics();
-
-            // Sync to Database only if connected
-            if (useFirebase && userId) {
-                try {
-                    const docRef = doc(db, 'artifacts', appId, 'users', userId, 'checklistData');
-                    setDoc(docRef, { [i]: isChecked }, { merge: true });
-                } catch (e) {
-                    console.log("Sync skipped.");
-                }
-            }
-        };
-
-        // 📊 ANALYTICS
-        function updateAnalytics() {
-            let mDone=0, pDone=0, cDone=0;
-            let mTot=schedule.length;
-            let pTot=schedule.filter(s=>s.type==='phy').length;
-            let cTot=schedule.filter(s=>s.type==='chem').length;
+            // 3. RENDER TABLE ROWS
+            const tbody = document.getElementById("tasks");
+            let tableHTML = "";
 
             schedule.forEach((task, i) => {
-                if(window.taskState[i]) {
-                    mDone++;
-                    if(task.type === 'phy') pDone++;
-                    else cDone++;
+                // Determine Colors
+                const p2Color = task.type === 'phy' ? 'text-neonPink' : 'text-neonYellow';
+                const prefix = task.type === 'phy' ? 'Phy: ' : 'Chem: ';
+                
+                // Add Phase Headers
+                if(i === 0 || schedule[i-1].phase !== task.phase) {
+                    const phaseNames = ["FOUNDATION", "CORE SCORING", "ELECTRO + INORGANIC", "FINISH EVERYTHING"];
+                    tableHTML += `<tr><td colspan="4" class="bg-slate-800/80 p-3 text-center text-xs font-bold text-slate-400 tracking-widest border-y border-slate-700 uppercase">PHASE ${task.phase}: ${phaseNames[task.phase-1]}</td></tr>`;
                 }
+
+                tableHTML += `
+                    <tr id="row-${i}" class="hover:bg-slate-700/50 transition-colors cursor-pointer" onclick="toggleTask(${i})">
+                        <td class="p-4 font-display font-bold text-slate-300 whitespace-nowrap">${task.date}</td>
+                        <td class="p-4 text-neonBlue font-medium">${task.m}</td>
+                        <td class="p-4 ${p2Color}">${prefix}${task.p2}</td>
+                        <td class="p-4 text-center">
+                            <input type="checkbox" id="cb-${i}" class="cyber-checkbox pointer-events-none">
+                        </td>
+                    </tr>`;
             });
-
-            document.getElementById('mathPct').innerText = Math.round((mDone/mTot)*100 || 0) + '%';
-            document.getElementById('phyPct').innerText = Math.round((pDone/pTot)*100 || 0) + '%';
-            document.getElementById('chemPct').innerText = Math.round((cDone/cTot)*100 || 0) + '%';
             
-            const totalPct = Math.round(((mDone+pDone+cDone) / (mTot+pTot+cTot)) * 100 || 0);
-            document.getElementById('progressBar').style.width = totalPct + '%';
-            document.getElementById('progressText').innerText = totalPct + '%';
-            
-            if(totalPct === 100) {
-                document.getElementById('progressBar').classList.add('shadow-[0_0_20px_#34d399]');
-                document.getElementById('progressText').innerText = 'SYLLABUS LOCKED 🏆';
-            } else {
-                document.getElementById('progressBar').classList.remove('shadow-[0_0_20px_#34d399]');
-            }
-        }
+            tbody.innerHTML = tableHTML;
 
-        // 🔐 FIREBASE AUTH & LIVE LISTENER (If Available)
-        if (useFirebase) {
-            const initAuth = async () => {
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                } catch(e) {}
+            // 4. TOGGLE & UPDATE LOGIC
+            window.toggleTask = function(index) {
+                // Flip the state
+                savedState[index] = !savedState[index];
+                
+                // Save safely to browser
+                localStorage.setItem('iit_jee_os_data', JSON.stringify(savedState));
+                
+                // Update UI visually
+                updateUI();
             };
-            initAuth();
 
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userId = user.uid;
-                    const docRef = doc(db, 'artifacts', appId, 'users', userId, 'checklistData');
+            function updateUI() {
+                let mDone = 0, pDone = 0, cDone = 0;
+                let mTot = schedule.length;
+                let pTot = schedule.filter(s => s.type === 'phy').length;
+                let cTot = schedule.filter(s => s.type === 'chem').length;
+
+                schedule.forEach((task, i) => {
+                    const row = document.getElementById(`row-${i}`);
+                    const cb = document.getElementById(`cb-${i}`);
                     
-                    onSnapshot(docRef, (docSnap) => {
-                        if (docSnap.exists()) {
-                            const data = docSnap.data();
-                            window.taskState = data; // Update memory
-                            
-                            // Re-render visuals
-                            schedule.forEach((_, i) => {
-                                const cb = document.getElementById(`cb-${i}`);
-                                const row = document.getElementById(`row-${i}`);
-                                if (cb && row) {
-                                    cb.checked = !!data[i];
-                                    if(cb.checked) row.classList.add('task-done');
-                                    else row.classList.remove('task-done');
-                                }
-                            });
-                            updateAnalytics();
-                        }
-                    }, (error) => console.log("Live updates unavailable"));
-                }
-            });
-        }
+                    if (!row || !cb) return;
 
-        // Add Event Listeners Directly to Checkboxes To Ensure Safety
-        document.querySelectorAll('.cyber-checkbox').forEach((cb, i) => {
-            cb.addEventListener('change', () => window.toggleTask(i));
+                    if (savedState[i]) {
+                        cb.checked = true;
+                        row.classList.add('task-done');
+                        mDone++;
+                        if (task.type === 'phy') pDone++; else cDone++;
+                    } else {
+                        cb.checked = false;
+                        row.classList.remove('task-done');
+                    }
+                });
+
+                // Update Percentage Texts
+                document.getElementById('mathPct').innerText = Math.round((mDone/mTot)*100 || 0) + '%';
+                document.getElementById('phyPct').innerText = Math.round((pDone/pTot)*100 || 0) + '%';
+                document.getElementById('chemPct').innerText = Math.round((cDone/cTot)*100 || 0) + '%';
+                
+                // Update Progress Bar
+                const totalPct = Math.round(((mDone+pDone+cDone) / (mTot+pTot+cTot)) * 100 || 0);
+                document.getElementById('progressBar').style.width = totalPct + '%';
+                document.getElementById('progressText').innerText = totalPct + '%';
+                
+                if(totalPct === 100) {
+                    document.getElementById('progressBar').classList.add('shadow-[0_0_20px_#34d399]');
+                    document.getElementById('progressText').innerText = 'SYLLABUS LOCKED 🏆';
+                } else {
+                    document.getElementById('progressBar').classList.remove('shadow-[0_0_20px_#34d399]');
+                }
+            }
+
+            // Run updateUI initially to apply saved states
+            updateUI();
+
+            // 5. TIMERS & STATUS UPDATES
+            const targetDate = new Date("2026-04-05T09:00:00").getTime();
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    document.getElementById("timer").innerText = "IT'S TIME.";
+                    document.getElementById("daysLeft").innerText = "0";
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("daysLeft").innerText = days;
+                document.getElementById("timer").innerText = 
+                    `${hours.toString().padStart(2,'0')}h ${minutes.toString().padStart(2,'0')}m ${seconds.toString().padStart(2,'0')}s`;
+            }, 1000);
+
+            const msgs = ["Grinding quietly...", "No zero days.", "Discipline > Motivation", "Future IITian at work.", "Stay Hard."];
+            let msgIndex = 0;
+            setInterval(() => {
+                document.getElementById('status').innerText = msgs[msgIndex];
+                msgIndex = (msgIndex + 1) % msgs.length;
+            }, 3000);
+
+            // 6. ALARM REMINDER FUNCTION
+            window.enableReminder = function() {
+                if (!("Notification" in window)) {
+                    alert("Browser notifications not supported on this device.");
+                    return;
+                }
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        alert("Daily 6 AM reminder enabled! (Browser must remain open)");
+                        setInterval(() => {
+                            const n = new Date();
+                            if(n.getHours() === 6 && n.getMinutes() === 0) {
+                                new Notification("Mission IIT 2026", { 
+                                    body: "Uth ja bhai. Checklist tera wait kar rahi hai." 
+                                });
+                            }
+                        }, 60000);
+                    } else {
+                        alert("Please allow notifications in your browser settings.");
+                    }
+                });
+            };
         });
+    </script>
+</body>
+</html>
 
-        // ⏱️ TIMER
-        const jeeTarget = new Date("2026-04-02T09:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = jeeTarget - now;
-            
-            if (distance < 0) {
-                document.getElementById('timer').innerText = "IT'S TIME.";
-                return;
-            }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('daysLeft').innerText = days;
-            document.getElementById('timer').innerText = 
-                `${hours.toString().padStart(2,'0')}h ${minutes.toString().padStart(2,'0')}m ${seconds.toString().padStart(2,'0')}s`;
-        }, 1000);
 
-        // 🤖 STATUS
-        const msgs = ["Grinding quietly...", "No zero days.", "Discipline > Motivation", "Future IITian at work.", "Stay Hard."];
-        let msgIndex = 0;
-        setInterval(() => {
-            document.getElementById('status').innerText = msgs[msgIndex];
-            msgIndex = (msgIndex + 1) % msgs.length;
-        }, 3000);
-
-        // 🔔 NOTIFICATIONS
-        window.enableReminder = function() {
-            if (!("Notification" in window)) {
-                alert("Browser notifications not supported.");
-                return;
-            }
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    alert("Daily 6 AM reminder enabled! Keep tab open.");
-                    setInterval(() => {
-                        const n = new Date();
-                        if(n.getHours() === 6 && n.getMinutes() === 0) {
-                            new Notification("Mission IIT 2026", { 
-                                body: "Uth ja bhai. Checklist tera wait kar rahi hai." 
-                            });
-                        }
-                    }, 60000);
-                }
     
