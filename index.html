@@ -6,7 +6,7 @@
 <title>Mission IIT JEE 2026</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -18,13 +18,9 @@
 tailwind.config = {
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Poppins'],
-        display: ['Space Grotesk']
-      },
-      colors: {
-        dark:'#020617',
-        glass:'#1e293bcc',
+      fontFamily:{sans:['Poppins'],display:['Space Grotesk']},
+      colors:{
+        darker:'#020617',
         neonBlue:'#38bdf8',
         neonPink:'#f43f5e',
         neonGreen:'#34d399',
@@ -36,223 +32,162 @@ tailwind.config = {
 </script>
 
 <style>
-.glass{
-  background:rgba(30,41,59,.75);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.1);
-}
-.task-done{
-  opacity:.45;
-  text-decoration:line-through;
-}
-.cyber-checkbox{
-  appearance:none;
-  width:20px;height:20px;
-  border:2px solid #38bdf8;
-  border-radius:4px;
-  position:relative;
-}
-.cyber-checkbox:checked{
-  background:#38bdf8;
-  box-shadow:0 0 12px #38bdf8;
-}
-.cyber-checkbox:checked::after{
-  content:'✔';
-  color:#020617;
-  font-size:14px;
-  font-weight:bold;
-  position:absolute;
-  left:3px;top:-1px;
-}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:4px}
+.glass{background:rgba(30,41,59,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1)}
+.task-row{transition:.3s}
+.task-done{opacity:.4;text-decoration:line-through;background:rgba(52,211,153,.05)}
+.cyber-checkbox{appearance:none;width:20px;height:20px;border:2px solid #38bdf8;border-radius:4px;cursor:pointer;position:relative}
+.cyber-checkbox:checked{background:#38bdf8;box-shadow:0 0 10px #38bdf8}
+.cyber-checkbox:checked::after{content:'✔';position:absolute;color:#020617;font-size:14px;left:3px;top:-1px;font-weight:bold}
+.hero{background:linear-gradient(rgba(2,6,23,.6),rgba(2,6,23,.95)),url('https://images.unsplash.com/photo-1562774053-701939374585') center/cover}
 </style>
 </head>
 
-<body class="bg-dark text-slate-200 min-h-screen">
+<body class="bg-darker text-slate-200 min-h-screen">
 
 <!-- HERO -->
-<header class="text-center py-14 bg-gradient-to-b from-black to-dark">
-  <h1 class="font-display text-5xl md:text-7xl font-bold">
-    MISSION <span class="text-neonBlue">IIT</span> 2026
-  </h1>
-  <p class="italic text-slate-400 mt-4 max-w-2xl mx-auto">
-    “Sapna bada hai toh system bhi brutal hona chahiye.”
-  </p>
+<header class="hero py-16 text-center relative">
+<div class="absolute top-4 right-4 bg-red-600 px-3 py-1 text-xs font-bold rounded animate-pulse">
+NO EXCUSES. JUST EXECUTION.
+</div>
+
+<h1 class="font-display text-5xl md:text-7xl font-bold text-white">
+MISSION <span class="text-neonBlue">IIT</span> 2026
+</h1>
+
+<p class="italic text-slate-300 mt-4 max-w-2xl mx-auto">
+“Sapna bada hai toh system bhi ruthless hona chahiye.”
+</p>
+
+<div class="flex justify-center gap-4 mt-6 flex-wrap">
+<span class="px-4 py-2 border border-neonPink rounded-full text-neonPink font-bold">🎯 99.9%ile</span>
+<span class="px-4 py-2 border border-neonGreen rounded-full text-neonGreen font-bold">🔒 Syllabus Lock: 20 March</span>
+</div>
 </header>
 
 <!-- LIVE DASHBOARD -->
-<section class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-
-<div class="glass rounded-2xl p-6 text-center">
-  <h2 class="font-display text-lg mb-2">⏳ Live Countdown</h2>
-  <div id="timer" class="text-xl font-bold text-neonBlue"></div>
+<section class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+<div class="glass p-6 rounded-2xl text-center">
+<h2 class="font-display text-xl mb-2">⏳ Live Countdown</h2>
+<div id="timer" class="text-2xl font-bold text-neonBlue"></div>
 </div>
-
-<div class="glass rounded-2xl p-6 text-center">
-  <h2 class="font-display text-lg mb-2">📅 Days Left</h2>
-  <div id="daysLeft" class="text-5xl font-extrabold text-neonPink"></div>
-  <p class="text-slate-400 text-sm mt-2">JEE April Attempt</p>
+<div class="glass p-6 rounded-2xl text-center">
+<h2 class="font-display text-xl mb-2">📅 Days Left</h2>
+<div id="daysLeft" class="text-5xl font-extrabold text-neonPink"></div>
+<p class="text-slate-400 text-sm">April Attempt</p>
 </div>
-
-<div class="glass rounded-2xl p-6 text-center">
-  <h2 class="font-display text-lg mb-2">⚡ Live Status</h2>
-  <div id="liveStatus" class="italic text-neonGreen"></div>
+<div class="glass p-6 rounded-2xl text-center">
+<h2 class="font-display text-xl mb-2">⚡ Live Status</h2>
+<div id="liveStatus" class="italic text-neonGreen"></div>
 </div>
-
 </section>
 
 <!-- PROGRESS -->
-<section class="max-w-6xl mx-auto px-4 py-10">
-<div class="glass rounded-2xl p-6">
-  <div class="flex justify-between font-bold text-sm mb-2">
-    <span>Overall Execution</span>
-    <span id="progressText">0%</span>
-  </div>
-  <div class="h-4 bg-slate-800 rounded-full overflow-hidden">
-    <div id="progressBar" class="h-4 w-0 bg-gradient-to-r from-neonBlue to-neonGreen transition-all"></div>
-  </div>
+<section class="max-w-6xl mx-auto px-4 pb-10">
+<div class="glass p-6 rounded-2xl">
+<div class="flex justify-between font-bold text-sm mb-2">
+<span>Execution Meter</span>
+<span id="progress-text" class="text-neonGreen">0%</span>
+</div>
+<div class="h-4 bg-slate-800 rounded-full overflow-hidden">
+<div id="progress-bar" class="h-4 w-0 bg-gradient-to-r from-neonBlue to-neonGreen transition-all"></div>
+</div>
 </div>
 </section>
 
-<!-- CHECKLIST (YOUR FULL PLAN) -->
+<!-- PHASES -->
 <section class="max-w-6xl mx-auto px-4 space-y-10">
 
-<!-- Helper macro style -->
-<script>/* purely visual separation */</script>
+<!-- PHASE TEMPLATE (reused) -->
+<script>
+const phases = [
+["18 Feb","Sequence & Series","Chem: Mole Concept"],
+["19 Feb","Binomial Theorem","Phy: Units & Dimensions"],
+["20 Feb","P&C","Chem: Redox Reaction"],
+["21 Feb","Quadratic Eq","Phy: Kinematics"],
+["22 Feb","Matrices","Chem: Atomic Structure"],
+["23 Feb","Determinants","Phy: Laws of Motion"],
+["24 Feb","Limits","Chem: Periodic Table"],
+["25 Feb","Continuity","Phy: WEP"],
+["26 Feb","Differentiability + MOD","Chem: Chemical Bonding"],
+["27 Feb","Indefinite Integration","Phy: COM & Collision"],
+["28 Feb","Definite Integration","Chem: States of Matter"]
+];
+</script>
 
-<!-- PHASE 1 -->
-<div>
-<h3 class="font-display text-2xl text-neonBlue mb-3">🚀 PHASE-1: Neev (18–28 Feb)</h3>
 <div class="glass rounded-xl overflow-hidden">
-<table class="w-full">
-<tbody class="divide-y divide-slate-800">
-<tr class="task-row"><td class="p-4">18 Feb – Sequence & Series | Mole Concept</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">19 Feb – Binomial | Units & Dimensions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">20 Feb – P&C | Redox</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">21 Feb – Quadratic | Kinematics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">22 Feb – Matrices | Atomic Structure</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">23 Feb – Determinants | Laws of Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">24 Feb – Limits | Periodic Table</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">25 Feb – Continuity | WEP</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">26 Feb – Differentiability | Chemical Bonding</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">27 Feb – Indefinite Int | COM & Collision</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">28 Feb – Definite Int | States of Matter</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-</tbody>
+<table class="w-full text-left">
+<thead class="bg-slate-800">
+<tr><th class="p-4">Date</th><th class="p-4">Maths</th><th class="p-4">Phy / Chem</th><th class="p-4 text-center">Done</th></tr>
+</thead>
+<tbody id="taskBody" class="divide-y divide-slate-800"></tbody>
 </table>
-</div>
-</div>
-
-<!-- PHASE 2 -->
-<div>
-<h3 class="font-display text-2xl text-neonYellow mb-3">🔥 PHASE-2: Core Scoring (1–10 Mar)</h3>
-<div class="glass rounded-xl overflow-hidden">
-<table class="w-full"><tbody class="divide-y divide-slate-800">
-<tr class="task-row"><td class="p-4">AUC | Rotational Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Diff Eq | Thermodynamics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Vector | Gravitation</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">3D | Chemical Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Straight Line | KTG</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Circle | Ionic Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Parabola | SHM</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Ellipse | Solutions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Hyperbola | Waves</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Statistics | Electrochem</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-</tbody></table>
-</div>
-</div>
-
-<!-- PHASE 3 -->
-<div>
-<h3 class="font-display text-2xl text-neonPink mb-3">⚡ PHASE-3: Electro + Inorganic</h3>
-<div class="glass rounded-xl overflow-hidden">
-<table class="w-full"><tbody class="divide-y divide-slate-800">
-<tr class="task-row"><td class="p-4">Probability | Electrostatics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">AOD | Kinetics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Trig Rev | Capacitors</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Sets | Coordination</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Math Reasoning | Current</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-</tbody></table>
-</div>
-</div>
-
-<!-- PHASE 4 -->
-<div>
-<h3 class="font-display text-2xl text-neonGreen mb-3">🏁 PHASE-4: Finish Everything</h3>
-<div class="glass rounded-xl overflow-hidden">
-<table class="w-full"><tbody class="divide-y divide-slate-800">
-<tr class="task-row"><td class="p-4">ITF | Moving Charges</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Maths PYQs | d-f Block</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Mock Analysis | EMI</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4">Weak Fix | GOC + Isomerism</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-<tr class="task-row"><td class="p-4 font-bold">Final Formula Rev | AC + Optics + Modern</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-</tbody></table>
-</div>
 </div>
 
 </section>
 
-<footer class="text-center py-12 text-slate-500 italic">
-Rank is rented. Discipline pays EMI daily.
+<footer class="text-center py-12 text-slate-500">
+<h2 class="font-display text-2xl font-bold">Only Mocks After 20th</h2>
+<p class="text-neonPink italic mt-2">Rukna mana hai. IIT final stop hai.</p>
 </footer>
 
-<!-- SCRIPT -->
 <script>
-/* 🔁 CHANGE DATE HERE IF NEEDED */
-const jeeDate = new Date("2026-04-05T09:00:00");
+/* Build tasks */
+const body=document.getElementById('taskBody');
+phases.forEach(()=>{});
+phases.forEach((p,i)=>{
+body.innerHTML+=`
+<tr class="task-row">
+<td class="p-4">${p[0]}</td>
+<td class="p-4 text-blue-400">${p[1]}</td>
+<td class="p-4 text-yellow-400">${p[2]}</td>
+<td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td>
+</tr>`;
+});
 
-const timer=document.getElementById('timer');
-const daysLeft=document.getElementById('daysLeft');
-
+/* Timer */
+const jeeDate=new Date("2026-04-05T09:00:00");
 function updateTimer(){
-  const now=new Date();
-  const diff=jeeDate-now;
-  if(diff<=0){timer.innerText="It's Go Time";daysLeft.innerText="0";return;}
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor(diff/3600000)%24;
-  const m=Math.floor(diff/60000)%60;
-  const s=Math.floor(diff/1000)%60;
-  timer.innerText=`${d}d ${h}h ${m}m ${s}s`;
-  daysLeft.innerText=d;
+const now=new Date(),diff=jeeDate-now;
+if(diff<=0)return;
+const d=Math.floor(diff/86400000);
+const h=Math.floor(diff/3600000)%24;
+const m=Math.floor(diff/60000)%60;
+const s=Math.floor(diff/1000)%60;
+timer.innerText=`${d}d ${h}h ${m}m ${s}s`;
+daysLeft.innerText=d;
 }
-setInterval(updateTimer,1000);
-updateTimer();
+setInterval(updateTimer,1000);updateTimer();
 
-/* LIVE STATUS */
-const statuses=[
-"Grinding quietly…",
-"Discipline > Motivation",
-"Future IITian at work",
-"System running clean",
-"Rank under construction 📈"
-];
+/* Status */
+const statuses=["Grinding quietly…","Consistency > Motivation","Future IITian at work","No zero days","Rank loading 📈"];
 setInterval(()=>liveStatus.innerText=statuses[Math.floor(Math.random()*statuses.length)],3000);
 
-/* PROGRESS + STORAGE */
-const checks=[...document.querySelectorAll('.task-check')];
-const bar=document.getElementById('progressBar');
-const text=document.getElementById('progressText');
-let state=JSON.parse(localStorage.getItem('jee_master_state'))||{};
-
+/* Progress */
+const checks=()=>document.querySelectorAll('.task-check');
+const bar=document.getElementById('progress-bar');
+const text=document.getElementById('progress-text');
+let state=JSON.parse(localStorage.getItem('jee_state'))||{};
 function updateProgress(){
-  const done=checks.filter(c=>c.checked).length;
-  const pct=Math.round(done/checks.length*100);
-  bar.style.width=pct+'%';
-  text.innerText=pct+'%';
+const c=[...checks()];
+const done=c.filter(x=>x.checked).length;
+const pct=Math.round(done/c.length*100)||0;
+bar.style.width=pct+'%';text.innerText=pct+'%';
 }
-
-checks.forEach((c,i)=>{
-  if(state[i]){
-    c.checked=true;
-    c.closest('.task-row').classList.add('task-done');
-  }
-  c.addEventListener('change',()=>{
-    c.closest('.task-row').classList.toggle('task-done');
-    state[i]=c.checked;
-    localStorage.setItem('jee_master_state',JSON.stringify(state));
-    updateProgress();
-  });
+setTimeout(()=>{
+checks().forEach((c,i)=>{
+if(state[i]){c.checked=true;c.closest('tr').classList.add('task-done')}
+c.addEventListener('change',()=>{
+c.closest('tr').classList.toggle('task-done');
+state[i]=c.checked;
+localStorage.setItem('jee_state',JSON.stringify(state));
+updateProgress();
+});
 });
 updateProgress();
+},100);
 </script>
 
 </body>
-    </html>
+</html>
