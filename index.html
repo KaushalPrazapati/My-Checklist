@@ -1,343 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aspirant OS v2.0</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS via CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission IIT JEE 2026</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
                         display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        cyberBg: '#050505',
-                        cyberCard: '#111111',
-                        neonBlue: '#00f2ff',
-                        neonGreen: '#39ff14',
-                        neonPink: '#ff007f'
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        neonBlue: '#38bdf8',
+                        neonPink: '#f43f5e',
+                        neonGreen: '#34d399',
+                        neonYellow: '#facc15'
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Base Styling & Custom Scrollbar */
-        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00f2ff; }
-
-        /* Glassmorphism & Cyber Aesthetics */
-        .glass-panel {
-            background: rgba(17, 17, 17, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .glow-blue { text-shadow: 0 0 10px rgba(0, 242, 255, 0.6); }
-        .glow-green { text-shadow: 0 0 10px rgba(57, 255, 20, 0.6); }
-        .border-glow-blue:focus-within { border-color: #00f2ff; box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); }
-
-        /* SPA Page Transitions */
-        .page-view {
-            display: none;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-        .page-view.active { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Checkbox Styling */
-        .cyber-checkbox {
-            appearance: none; width: 22px; height: 22px;
-            border: 2px solid #555; border-radius: 6px;
-            background: rgba(0,0,0,0.5); cursor: pointer;
-            transition: all 0.2s; position: relative;
-        }
-        .cyber-checkbox:checked { border-color: #00f2ff; background: rgba(0, 242, 255, 0.1); box-shadow: 0 0 10px rgba(0,242,255,0.4); }
-        .cyber-checkbox:checked::after {
-            content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            color: #00f2ff; position: absolute; font-size: 12px;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-        }
-
-        /* Task completion animation */
-        .task-done { text-decoration: line-through; color: #6b7280; transition: all 0.3s; }
-
-        /* Timer Circle */
-        .timer-circle {
-            background: conic-gradient(#00f2ff var(--progress), #1a1a1a 0deg);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 30px rgba(0,242,255,0.1);
-        }
-        .timer-inner {
-            background: #050505; border-radius: 50%;
-            width: 92%; height: 92%;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-        }
-
-        /* Nav Active States */
-        .nav-item.active { color: #00f2ff; background: rgba(0, 242, 255, 0.1); border-right: 3px solid #00f2ff; }
-        @media (max-width: 768px) {
-            .nav-item.active { border-right: none; border-top: 3px solid #00f2ff; }
-            .content-area { padding-bottom: 80px; } /* Space for bottom nav */
-        }
-
-        /* Zen Mode */
-        body.zen-mode #sidebar, body.zen-mode #bottom-nav { display: none !important; }
-        body.zen-mode .content-area { margin-left: 0 !important; padding-bottom: 0 !important; }
-        
-        /* Bar Chart CSS */
-        .bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, #00f2ff, #39ff14); transition: height 1s ease-out; }
-    </style>
-</head>
-<body class="font-sans antialiased text-slate-300">
-
-    <!-- Desktop Sidebar -->
-    <aside id="sidebar" class="hidden md:flex flex-col w-64 h-screen fixed top-0 left-0 glass-panel border-r border-slate-800 z-50">
-        <div class="p-6 flex items-center gap-3 border-b border-slate-800">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neonBlue to-neonGreen flex items-center justify-center text-cyberBg font-bold text-xl">
-                <i class="fa-solid fa-atom"></i>
-            </div>
-            <div>
-                <h1 class="font-display font-bold text-white text-lg tracking-wide">ASPIRANT<span class="text-neonBlue">OS</span></h1>
-                <p class="text-xs text-neonGreen font-semibold tracking-widest uppercase">v2.0 Active</p>
-            </div>
-        </div>
-        
-        <nav class="flex-1 px-4 py-6 space-y-2 mt-4">
-            <button onclick="navigate('dashboard')" class="nav-item active w-full flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all font-medium text-left">
-                <i class="fa-solid fa-chart-line w-5"></i> Dashboard
-            </button>
-            <button onclick="navigate('planner')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all font-medium text-left">
-                <i class="fa-solid fa-list-check w-5"></i> War Room (Tasks)
-            </button>
-            <button onclick="navigate('vault')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all font-medium text-left">
-                <i class="fa-solid fa-folder-open w-5"></i> Resource Vault
-            </button>
-            <button onclick="navigate('focus')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all font-medium text-left">
-                <i class="fa-solid fa-stopwatch w-5"></i> Focus Zone
-            </button>
-            <button onclick="navigate('analytics')" class="nav-item w-full flex items-center gap-4 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all font-medium text-left">
-                <i class="fa-solid fa-bolt w-5"></i> Analytics & Routine
-            </button>
-        </nav>
-
-        <div class="p-4 border-t border-slate-800">
-            <div id="motivation-widget" class="bg-slate-900/50 rounded-lg p-4 text-xs italic text-slate-400 border border-slate-800 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-1 h-full bg-neonPink"></div>
-                "Don't stop when you're tired, stop when you're done."
-            </div>
-        </div>
-    </aside>
-
-    <!-- Mobile Bottom Nav -->
-    <nav id="bottom-nav" class="md:hidden fixed bottom-0 left-0 w-full glass-panel border-t border-slate-800 z-50 flex justify-around items-center p-2 pb-4">
-        <button onclick="navigate('dashboard')" class="nav-item active flex flex-col items-center p-2 text-slate-400 w-16 rounded-lg">
-            <i class="fa-solid fa-chart-line text-lg mb-1"></i><span class="text-[10px]">Home</span>
-        </button>
-        <button onclick="navigate('planner')" class="nav-item flex flex-col items-center p-2 text-slate-400 w-16 rounded-lg">
-            <i class="fa-solid fa-list-check text-lg mb-1"></i><span class="text-[10px]">Tasks</span>
-        </button>
-        <button onclick="navigate('vault')" class="nav-item flex flex-col items-center p-2 text-slate-400 w-16 rounded-lg">
-            <i class="fa-solid fa-folder-open text-lg mb-1"></i><span class="text-[10px]">Vault</span>
-        </button>
-        <button onclick="navigate('focus')" class="nav-item flex flex-col items-center p-2 text-slate-400 w-16 rounded-lg">
-            <i class="fa-solid fa-stopwatch text-lg mb-1"></i><span class="text-[10px]">Focus</span>
-        </button>
-        <button onclick="navigate('analytics')" class="nav-item flex flex-col items-center p-2 text-slate-400 w-16 rounded-lg">
-            <i class="fa-solid fa-bolt text-lg mb-1"></i><span class="text-[10px]">Stats</span>
-        </button>
-    </nav>
-
-    <!-- Main Content Area -->
-    <main class="content-area md:ml-64 min-h-screen p-4 md:p-8 transition-all duration-300">
-
-        <!-- ================= PAGE 1: DASHBOARD ================= -->
-        <section id="dashboard" class="page-view active max-w-6xl mx-auto">
-            <header class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <h2 class="font-display text-3xl font-bold text-white mb-1">Welcome back, Warrior.</h2>
-                    <p class="text-slate-400">Your empire awaits. Time to grind.</p>
-                </div>
-                <div class="glass-panel px-6 py-3 rounded-xl border border-neonBlue/30 shadow-[0_0_15px_rgba(0,242,255,0.1)] flex items-center gap-4">
-                    <div class="text-right">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Target 2026 Countdown</p>
-                        <div id="countdown-timer" class="font-display text-xl font-bold text-neonBlue tabular-nums">
-                            Loading...
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-hourglass-half text-neonBlue text-xl animate-pulse"></i>
-                </div>
-            </header>
-
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-neonBlue/10 rounded-full blur-xl group-hover:bg-neonBlue/20 transition-all"></div>
-                    <p class="text-sm text-slate-400 mb-1">Tasks Completed</p>
-                    <h3 id="stat-tasks" class="font-display text-3xl font-bold text-white">0</h3>
-                </div>
-                <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-neonGreen/10 rounded-full blur-xl group-hover:bg-neonGreen/20 transition-all"></div>
-                    <p class="text-sm text-slate-400 mb-1">Study Hours</p>
-                    <h3 id="stat-hours" class="font-display text-3xl font-bold text-white">0<span class="text-lg text-slate-500">h</span></h3>
-                </div>
-                <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group col-span-2 md:col-span-2 flex items-center justify-between border-l-4 border-neonPink">
-                    <div>
-                        <p class="text-sm text-slate-400 mb-1">Current Rank Level</p>
-                        <h3 class="font-display text-2xl font-bold text-neonPink glow-pink uppercase tracking-wide">AIR 1 Material</h3>
-                    </div>
-                    <i class="fa-solid fa-crown text-4xl text-neonPink/20"></i>
-                </div>
-            </div>
-
-            <!-- Current Activity & Quick Planner -->
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Live Routine -->
-                <div class="glass-panel rounded-2xl p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-display font-bold text-lg text-white">Live Routine Monitor</h3>
-                        <span class="px-2 py-1 bg-neonGreen/10 text-neonGreen text-xs rounded border border-neonGreen/30 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-neonGreen animate-ping"></span> Live
-                        </span>
-                    </div>
-                    
-                    <div id="current-activity" class="p-4 rounded-xl bg-slate-800/50 border border-slate-700 flex items-start gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-blue-400 font-bold uppercase tracking-wider mb-1">Current Slot (10:00 AM - 01:00 PM)</p>
-                            <h4 class="text-white font-medium text-lg">Deep Study Session 1</h4>
-                            <p class="text-sm text-slate-400 mt-1">Focus entirely on problem-solving. No theory right now.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mini Todo -->
-                <div class="glass-panel rounded-2xl p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-display font-bold text-lg text-white">Today's Priority</h3>
-                        <button onclick="navigate('planner')" class="text-xs text-neonBlue hover:underline">View All</button>
-                    </div>
-                    <div id="dashboard-tasks" class="space-y-3">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= PAGE 2: PLANNER (WAR ROOM) ================= -->
-        <section id="planner" class="page-view max-w-5xl mx-auto">
-            <header class="mb-8">
-                <h2 class="font-display text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                    <i class="fa-solid fa-list-check text-neonBlue"></i> The War Room
-                </h2>
-                <p class="text-slate-400">Plan your day. Execute ruthlessly. Tick the boxes.</p>
-            </header>
-
-            <!-- Add Task Input -->
-            <div class="glass-panel p-2 rounded-xl mb-8 flex flex-col md:flex-row gap-2 border-glow-blue transition-all">
-                <input type="text" id="task-input" placeholder="E.g., Complete Rotational Motion PYQs..." class="flex-1 bg-transparent border-none outline-none text-white px-4 py-3 placeholder-slate-500">
-                <div class="flex gap-2 p-1">
-                    <select id="task-subject" class="bg-slate-800 text-sm text-slate-300 rounded-lg px-3 outline-none border border-slate-700 cursor-pointer focus:border-neonBlue">
-                        <option value="phy">Physics</option>
-                        <option value="chem">Chemistry</option>
-                        <option value="math">Math / Bio</option>
-                        <option value="other">General</option>
-                    </select>
-                    <button onclick="addTask()" class="bg-neonBlue hover:bg-cyan-400 text-cyberBg font-bold px-6 py-2 rounded-lg transition-colors">
-                        Add Target
-                    </button>
-                </div>
-            </div>
-
-            <!-- Task List Area -->
-            <div class="glass-panel rounded-2xl overflow-hidden">
-                <div class="bg-slate-900/80 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <h3 class="font-semibold text-white">Today's Missions</h3>
-                    <div class="flex gap-2">
-                        <span id="task-progress-text" class="text-sm text-neonBlue font-bold">0/0 Done</span>
-                    </div>
-                </div>
-                
-                <!-- Progress Bar -->
-                <div class="w-full bg-slate-800 h-1">
-                    <div id="task-progress-bar" class="bg-neonBlue h-1 transition-all duration-500 shadow-[0_0_10px_#00f2ff]" style="width: 0%"></div>
-                </div>
-
-                <div id="main-task-list" class="divide-y divide-slate-800/50 max-h-[60vh] overflow-y-auto p-2">
-                    <!-- Tasks rendered by JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= PAGE 3: RESOURCE VAULT ================= -->
-        <section id="vault" class="page-view max-w-6xl mx-auto">
-            <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h2 class="font-display text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                        <i class="fa-solid fa-folder-open text-neonGreen"></i> Resource Vault
-                    </h2>
-                    <p class="text-slate-400">Your digital library. Notes, PYQs, and Formulas.</p>
-                </div>
-                
-                <!-- Search & Filters -->
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <div class="relative">
-                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                        <input type="text" placeholder="Search chapters..." class="bg-slate-900 border border-slate-700 text-white rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-neonGreen w-full sm:w-64">
-                    </div>
-                </div>
-            </header>
-
-            <!-- Subject Tabs -->
-            <div class="flex gap-2 overflow-x-auto pb-4 mb-4 hide-scrollbar">
-                <button class="px-5 py-2 rounded-full bg-neonGreen/10 text-neonGreen border border-neonGreen/30 text-sm font-semibold whitespace-nowrap">All Files</button>
-                <button class="px-5 py-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 text-sm font-medium whitespace-nowrap transition-colors">Physics</button>
-                <button class="px-5 py-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 text-sm font-medium whitespace-nowrap transition-colors">Chemistry</button>
-                <button class="px-5 py-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 text-sm font-medium whitespace-nowrap transition-colors">Math / Bio</button>
-            </div>
-
-            <!-- Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="glass-panel p-5 rounded-xl hover:-translate-y-1 transition-transform border-t-2 border-blue-500 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded font-bold">Physics</span>
-                        <i class="fa-solid fa-file-pdf text-slate-500 group-hover:text-red-400 transition-colors text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Rotational Dynamics - Short Notes</h3>
-                    <p class="text-sm text-slate-400 mb-6">Complete formula sheet and key concepts for quick revision.</p>
-                    <div class="flex gap-2">
-                        <button class="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-sm py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-download"></i> Get PDF
-                        </button>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div cl        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
         .glass-panel {
@@ -349,49 +46,42 @@
         .glow-text-blue { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
         .glow-text-pink { text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
 
-        .task-row { 
-            transition: all 0.3s ease; 
-            cursor: pointer; /* Makes it clear the whole row is clickable */
-        }
-        
+        .task-row { transition: all 0.3s ease; }
         .task-done {
             opacity: 0.4;
             text-decoration: line-through;
-            background-color: rgba(52, 211, 153, 0.08);
+            background-color: rgba(52, 211, 153, 0.05);
         }
 
         /* Checkbox styling */
         .cyber-checkbox {
             appearance: none;
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border: 2px solid #38bdf8;
             border-radius: 4px;
-            background: rgba(2, 6, 23, 0.5);
+            background: transparent;
             cursor: pointer;
             position: relative;
             transition: all 0.2s;
-            pointer-events: none; /* Let the row handle the click */
         }
         .cyber-checkbox:checked {
             background: #38bdf8;
             box-shadow: 0 0 10px #38bdf8;
-            border-color: #38bdf8;
         }
         .cyber-checkbox:checked::after {
             content: '✔';
             position: absolute;
             color: #020617;
             font-size: 14px;
-            font-weight: 800;
+            font-weight: bold;
             left: 3px;
             top: -1px;
         }
 
         /* Image Placeholder Style */
         .iit-image-box {
-            background: linear-gradient(rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.95)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            background: linear-gradient(rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
             border-bottom: 2px solid var(--neonBlue);
         }
     </style>
@@ -399,24 +89,27 @@
 <body class="bg-darker text-slate-200 min-h-screen selection:bg-neonPink selection:text-white">
 
     <!-- Hero Section -->
-    <header class="iit-image-box py-16 px-4 relative flex flex-col items-center justify-center text-center">
-        <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded shadow-[0_0_10px_#dc2626] animate-pulse z-10">
+    <header class="iit-image-box py-16 px-4 relative overflow-hidden flex flex-col items-center justify-center text-center">
+        <!-- Motivational Quote -->
+        <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded shadow-[0_0_10px_#dc2626] animate-pulse">
             NO EXCUSES. JUST EXECUTION.
         </div>
         
-        <!-- Image of IIT campus ka shaandar drishya (Background) -->
-        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-4 glow-text-blue tracking-tight relative z-10">
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-4 glow-text-blue tracking-tight">
             MISSION <span class="text-neonBlue">IIT</span> 2026
         </h1>
-        <p class="text-lg md:text-xl font-light text-slate-300 max-w-2xl mx-auto italic mb-6 relative z-10">
+        <p class="text-lg md:text-xl font-light text-slate-300 max-w-2xl mx-auto italic mb-6">
             "Jab tak todenge nahi, tab tak chhodenge nahi. Tera sapna teri aukaat se bada hai, toh mehnat bhi aukaat se badi karni padegi."
         </p>
+        
+        <!-- System Prompt Format Image Tag Placeholder -->
+        <div class="hidden text-sm text-slate-400"></div>
 
-        <div class="flex flex-wrap justify-center gap-4 mt-4 relative z-10">
-            <span class="px-4 py-2 rounded-full border border-neonPink text-neonPink text-sm font-bold shadow-[0_0_10px_rgba(244,63,94,0.3)] bg-darker/50">
+        <div class="flex gap-4 mt-4">
+            <span class="px-4 py-2 rounded-full border border-neonPink text-neonPink text-sm font-bold shadow-[0_0_10px_rgba(244,63,94,0.3)]">
                 <i class="fa-solid fa-crosshairs mr-2"></i>Target: 99.9%ile
             </span>
-            <span class="px-4 py-2 rounded-full border border-neonGreen text-neonGreen text-sm font-bold shadow-[0_0_10px_rgba(52,211,153,0.3)] bg-darker/50">
+            <span class="px-4 py-2 rounded-full border border-neonGreen text-neonGreen text-sm font-bold shadow-[0_0_10px_rgba(52,211,153,0.3)]">
                 <i class="fa-solid fa-lock mr-2"></i>Syllabus Lock: 20 March
             </span>
         </div>
@@ -449,28 +142,28 @@
                     <i class="fa-solid fa-rocket mr-3"></i> PHASE-1: Neev (Foundation) <span class="ml-auto text-sm text-slate-400 font-normal">18 Feb – 28 Feb</span>
                 </h3>
                 <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
+                    <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-800/80 border-b border-slate-700 text-slate-300">
+                            <tr class="bg-slate-800/50 border-b border-slate-700 text-slate-300">
                                 <th class="p-4 font-semibold w-24">Date</th>
                                 <th class="p-4 font-semibold w-1/3">Slot-1 (Maths)</th>
                                 <th class="p-4 font-semibold w-1/3">Slot-2 (Phy/Chem)</th>
                                 <th class="p-4 font-semibold text-center w-24">Ho Gaya?</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-800/50">
-                            <!-- JS logic handles row clicks -->
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">18 Feb</td><td class="p-4 text-blue-400 font-medium">Sequence & Series</td><td class="p-4 text-yellow-400">Chem: Mole Concept</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">19 Feb</td><td class="p-4 text-blue-400 font-medium">Binomial Theorem</td><td class="p-4 text-pink-400">Phy: Units & Dimensions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">20 Feb</td><td class="p-4 text-blue-400 font-medium">P&C</td><td class="p-4 text-yellow-400">Chem: Redox Reaction</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">21 Feb</td><td class="p-4 text-blue-400 font-medium">Quadratic Eq</td><td class="p-4 text-pink-400">Phy: Kinematics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">22 Feb</td><td class="p-4 text-blue-400 font-medium">Matrices</td><td class="p-4 text-yellow-400">Chem: Atomic Structure</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">23 Feb</td><td class="p-4 text-blue-400 font-medium">Determinants</td><td class="p-4 text-pink-400">Phy: Laws of Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">24 Feb</td><td class="p-4 text-blue-400 font-medium">Limits</td><td class="p-4 text-yellow-400">Chem: Periodic Table</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">25 Feb</td><td class="p-4 text-blue-400 font-medium">Continuity</td><td class="p-4 text-pink-400">Phy: WEP</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">26 Feb</td><td class="p-4 text-blue-400 font-medium">Differentiability + MOD</td><td class="p-4 text-yellow-400">Chem: Chemical Bonding</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">27 Feb</td><td class="p-4 text-blue-400 font-medium">Indefinite Integration</td><td class="p-4 text-pink-400">Phy: COM & Collision</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">28 Feb</td><td class="p-4 text-blue-400 font-medium">Definite Integration</td><td class="p-4 text-yellow-400">Chem: States of Matter</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                        <tbody class="divide-y divide-slate-800">
+                            <!-- JS will calculate progress based on checkbox class 'task-check' -->
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">18 Feb</td><td class="p-4 text-blue-400">Sequence & Series</td><td class="p-4 text-yellow-400">Chem: Mole Concept</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">19 Feb</td><td class="p-4 text-blue-400">Binomial Theorem</td><td class="p-4 text-pink-400">Phy: Units & Dimensions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">20 Feb</td><td class="p-4 text-blue-400">P&C</td><td class="p-4 text-yellow-400">Chem: Redox Reaction</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">21 Feb</td><td class="p-4 text-blue-400">Quadratic Eq</td><td class="p-4 text-pink-400">Phy: Kinematics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">22 Feb</td><td class="p-4 text-blue-400">Matrices</td><td class="p-4 text-yellow-400">Chem: Atomic Structure</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">23 Feb</td><td class="p-4 text-blue-400">Determinants</td><td class="p-4 text-pink-400">Phy: Laws of Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">24 Feb</td><td class="p-4 text-blue-400">Limits</td><td class="p-4 text-yellow-400">Chem: Periodic Table</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">25 Feb</td><td class="p-4 text-blue-400">Continuity</td><td class="p-4 text-pink-400">Phy: WEP</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">26 Feb</td><td class="p-4 text-blue-400">Differentiability + MOD</td><td class="p-4 text-yellow-400">Chem: Chemical Bonding</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">27 Feb</td><td class="p-4 text-blue-400">Indefinite Integration</td><td class="p-4 text-pink-400">Phy: COM & Collision</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">28 Feb</td><td class="p-4 text-blue-400">Definite Integration</td><td class="p-4 text-yellow-400">Chem: States of Matter</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -482,18 +175,18 @@
                     <i class="fa-solid fa-fire mr-3"></i> PHASE-2: Core Scoring <span class="ml-auto text-sm text-slate-400 font-normal">1 Mar – 10 Mar</span>
                 </h3>
                 <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonYellow">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
-                        <tbody class="divide-y divide-slate-800/50">
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 w-24">1 Mar</td><td class="p-4 w-1/3 text-blue-400 font-medium">AUC</td><td class="p-4 w-1/3 text-pink-400">Phy: Rotational Motion</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">2 Mar</td><td class="p-4 text-blue-400 font-medium">Differential Eq</td><td class="p-4 text-yellow-400">Chem: Thermodynamics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">3 Mar</td><td class="p-4 text-blue-400 font-medium">Vector Algebra</td><td class="p-4 text-pink-400">Phy: Gravitation</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">4 Mar</td><td class="p-4 text-blue-400 font-medium">3D Geometry</td><td class="p-4 text-yellow-400">Chem: Chemical Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">5 Mar</td><td class="p-4 text-blue-400 font-medium">Straight Line</td><td class="p-4 text-pink-400">Phy: KTG + Thermal</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">6 Mar</td><td class="p-4 text-blue-400 font-medium">Circle</td><td class="p-4 text-yellow-400">Chem: Ionic Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">7 Mar</td><td class="p-4 text-blue-400 font-medium">Parabola</td><td class="p-4 text-pink-400">Phy: SHM</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">8 Mar</td><td class="p-4 text-blue-400 font-medium">Ellipse</td><td class="p-4 text-yellow-400">Chem: Solutions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">9 Mar</td><td class="p-4 text-blue-400 font-medium">Hyperbola</td><td class="p-4 text-pink-400">Phy: Wave Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">10 Mar</td><td class="p-4 text-blue-400 font-medium">Statistics</td><td class="p-4 text-yellow-400">Chem: Electrochemistry</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                    <table class="w-full text-left border-collapse">
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24">1 Mar</td><td class="p-4 w-1/3 text-blue-400">AUC</td><td class="p-4 w-1/3 text-pink-400">Phy: Rotational Motion</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">2 Mar</td><td class="p-4 text-blue-400">Differential Eq</td><td class="p-4 text-yellow-400">Chem: Thermodynamics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">3 Mar</td><td class="p-4 text-blue-400">Vector Algebra</td><td class="p-4 text-pink-400">Phy: Gravitation</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">4 Mar</td><td class="p-4 text-blue-400">3D Geometry</td><td class="p-4 text-yellow-400">Chem: Chemical Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">5 Mar</td><td class="p-4 text-blue-400">Straight Line</td><td class="p-4 text-pink-400">Phy: KTG + Thermal</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">6 Mar</td><td class="p-4 text-blue-400">Circle</td><td class="p-4 text-yellow-400">Chem: Ionic Equilibrium</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">7 Mar</td><td class="p-4 text-blue-400">Parabola</td><td class="p-4 text-pink-400">Phy: SHM</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">8 Mar</td><td class="p-4 text-blue-400">Ellipse</td><td class="p-4 text-yellow-400">Chem: Solutions</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">9 Mar</td><td class="p-4 text-blue-400">Hyperbola</td><td class="p-4 text-pink-400">Phy: Wave Motion</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">10 Mar</td><td class="p-4 text-blue-400">Statistics</td><td class="p-4 text-yellow-400">Chem: Electrochemistry</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -505,13 +198,13 @@
                     <i class="fa-solid fa-bolt mr-3"></i> PHASE-3: Electro + Inorganic <span class="ml-auto text-sm text-slate-400 font-normal">11 Mar – 15 Mar</span>
                 </h3>
                 <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonPink shadow-[0_0_15px_rgba(244,63,94,0.1)]">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
-                        <tbody class="divide-y divide-slate-800/50">
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 w-24">11 Mar</td><td class="p-4 w-1/3 text-blue-400 font-medium">Probability</td><td class="p-4 w-1/3 text-pink-400">Phy: Electrostatics</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">12 Mar</td><td class="p-4 text-blue-400 font-medium">AOD</td><td class="p-4 text-yellow-400">Chem: Chemical Kinetics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">13 Mar</td><td class="p-4 text-blue-400 font-medium">Trigonometry (Rev)</td><td class="p-4 text-pink-400">Phy: Capacitors</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">14 Mar</td><td class="p-4 text-blue-400 font-medium">Sets & Relations</td><td class="p-4 text-yellow-400">Chem: Coordination Compounds</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4">15 Mar</td><td class="p-4 text-blue-400 font-medium">Mathematical Reasoning</td><td class="p-4 text-pink-400">Phy: Current Electricity</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                    <table class="w-full text-left border-collapse">
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24">11 Mar</td><td class="p-4 w-1/3 text-blue-400">Probability</td><td class="p-4 w-1/3 text-pink-400">Phy: Electrostatics</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">12 Mar</td><td class="p-4 text-blue-400">AOD</td><td class="p-4 text-yellow-400">Chem: Chemical Kinetics</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">13 Mar</td><td class="p-4 text-blue-400">Trigonometry (Rev)</td><td class="p-4 text-pink-400">Phy: Capacitors</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">14 Mar</td><td class="p-4 text-blue-400">Sets & Relations</td><td class="p-4 text-yellow-400">Chem: Coordination Compounds</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4">15 Mar</td><td class="p-4 text-blue-400">Mathematical Reasoning</td><td class="p-4 text-pink-400">Phy: Current Electricity</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -523,13 +216,13 @@
                     <i class="fa-solid fa-flag-checkered mr-3"></i> PHASE-4: Finish Everything <span class="ml-auto text-sm text-slate-400 font-normal">16 Mar – 20 Mar</span>
                 </h3>
                 <div class="glass-panel rounded-xl overflow-hidden overflow-x-auto border-t-2 border-neonGreen shadow-[0_0_15px_rgba(52,211,153,0.1)]">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
-                        <tbody class="divide-y divide-slate-800/50">
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 w-24 font-bold text-white">16 Mar</td><td class="p-4 w-1/3 text-blue-400 font-medium">ITF (light)</td><td class="p-4 w-1/3 text-pink-400">Phy: Moving Charges & Mag.</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 font-bold text-white">17 Mar</td><td class="p-4 text-blue-400 font-medium">Maths PYQs</td><td class="p-4 text-yellow-400">Chem: d- & f-Block</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 font-bold text-white">18 Mar</td><td class="p-4 text-blue-400 font-medium">Maths Mock Analysis</td><td class="p-4 text-pink-400">Phy: EMI</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 font-bold text-white">19 Mar</td><td class="p-4 text-blue-400 font-medium">Weak Maths Fix</td><td class="p-4 text-yellow-400">Chem: GOC + Isomerism</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
-                            <tr class="task-row hover:bg-slate-700/50"><td class="p-4 font-bold text-white">20 Mar</td><td class="p-4 text-blue-400 font-medium">Formula Revision (ALL)</td><td class="p-4 text-pink-400 font-bold">Phy: AC + Ray Optics + Modern</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                    <table class="w-full text-left border-collapse">
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 w-24 font-bold text-white">16 Mar</td><td class="p-4 w-1/3 text-blue-400">ITF (light)</td><td class="p-4 w-1/3 text-pink-400">Phy: Moving Charges & Mag.</td><td class="p-4 text-center w-24"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">17 Mar</td><td class="p-4 text-blue-400">Maths PYQs</td><td class="p-4 text-yellow-400">Chem: d- & f-Block</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">18 Mar</td><td class="p-4 text-blue-400">Maths Mock Analysis</td><td class="p-4 text-pink-400">Phy: EMI</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">19 Mar</td><td class="p-4 text-blue-400">Weak Maths Fix</td><td class="p-4 text-yellow-400">Chem: GOC + Isomerism</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
+                            <tr class="task-row hover:bg-slate-800/30"><td class="p-4 font-bold text-white">20 Mar</td><td class="p-4 text-blue-400">Formula Revision (ALL)</td><td class="p-4 text-pink-400 font-bold">Phy: AC + Ray Optics + Modern</td><td class="p-4 text-center"><input type="checkbox" class="cyber-checkbox task-check"></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -539,7 +232,28 @@
         
         <footer class="mt-16 text-center pb-8">
             <h2 class="font-display text-3xl font-bold text-slate-500 mb-2 uppercase tracking-widest">Only Mocks After 20th!</h2>
-            <p class="text-neonPink italic mb-6">Bhai roke rukna nahi hai, ab IIT hi rukna hai!</p>
+            <p class="text-neonPink italic">Bhai roke rukna nahi hai, ab IIT hi rukna hai!</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript For Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.task-check');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const totalTasks = checkboxes.length;
+
+            // Load saved state (local storage)
+            let savedState = JSON.parse(localStorage.getItem('jee2026_progress')) || {};
             
-            <!-- Reset Button to clear corrupted local storage if needed -->
-            <button id="reset-btn" class="px-4 py-2 bg-slate-800 hover:bg-red-900/50 text-slate-400 hover:text-red-400 text-sm rounded-lg border bo
+            checkboxes.forEach((cb, index) => {
+                // Initialize state
+                if(savedState[index]) {
+                    cb.checked = true;
+                    cb.closest('.task-row').classList.add('task-done');
+                }
+
+                // Listen for clicks
+                cb.add
